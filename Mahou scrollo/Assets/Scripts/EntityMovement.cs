@@ -10,9 +10,7 @@ public class EntityMovement : MonoBehaviour
 
     // External references
     [SerializeField] private Rigidbody2D entityRigidbody;
-
-    // Internal variables
-    private bool isGrounded = true;
+    [SerializeField] private GroundedController groundedController;
 
     private void Start()
     {
@@ -35,7 +33,7 @@ public class EntityMovement : MonoBehaviour
 
     public void Jump()
     {
-        if (isGrounded)
+        if (groundedController.GetIsGrounded())
         {
             entityRigidbody.velocity = new Vector2(entityRigidbody.velocity.x, jumpVelocity * Time.deltaTime);
         }
