@@ -6,18 +6,38 @@ public class EntityMovement : MonoBehaviour
 {
     // Public variables (Balancing tools)
     [SerializeField] private float movespeed;
+    [SerializeField] private float jumpVelocity;
 
     // External references
     [SerializeField] private Rigidbody2D entityRigidbody;
 
+    // Internal variables
+    private bool isGrounded = true;
+
     private void Start()
     {
         movespeed *= 100;
+        jumpVelocity *= 100;
     }
 
-    public void MoveInDirection(Vector2 direction)
+    private void Update()
     {
-        Vector3 moveAmount = direction * movespeed * Time.deltaTime;
-        entityRigidbody.velocity = moveAmount; 
+        //if()
+    }
+
+
+    public void MoveInDirection(float direction)
+    {
+        direction = direction * movespeed * Time.deltaTime;
+        Vector2 moveAmount = new Vector2 (direction, entityRigidbody.velocity.y);
+        entityRigidbody.velocity = moveAmount;
+    }
+
+    public void Jump()
+    {
+        if (isGrounded)
+        {
+            entityRigidbody.velocity = new Vector2(entityRigidbody.velocity.x, jumpVelocity * Time.deltaTime);
+        }
     }
 }
