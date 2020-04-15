@@ -8,17 +8,20 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private EntityMovement playerMovement;
 
     // Internal variables
-    private Vector2 moveDirection;
+    private float moveDirectionX;
 
     // Update is called once per frame
     void Update()
     {
-        moveDirection = Vector2.zero;
+        moveDirectionX = 0f;
 
-        // Teclado
-        moveDirection.x = Input.GetAxisRaw("Horizontal");
-        moveDirection.y = Input.GetAxisRaw("Vertical");
+        moveDirectionX = Input.GetAxisRaw("Horizontal");
 
-        playerMovement.MoveInDirection(Vector2.ClampMagnitude(moveDirection, 1f));
+        if (Input.GetButtonDown("Jump"))
+        {
+            playerMovement.Jump();
+        }
+
+        playerMovement.MoveInDirection(moveDirectionX);
     }
 }
