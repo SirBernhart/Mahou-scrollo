@@ -45,17 +45,18 @@ public class EntityMovement : MonoBehaviour
         {
             Deaccelerate(deaccelerationDirection);
         }
-        
+
+        float modifiedGravity = Physics2D.gravity.y;
         if(entityRigidbody.velocity.y < 0)
         {
-            entityRigidbody.velocity += new Vector2(0, Physics2D.gravity.y * 2.5f * Time.deltaTime);
+            modifiedGravity *= (2.5f * Time.deltaTime);
         }
         else
         {
-            entityRigidbody.velocity += new Vector2(0, Physics2D.gravity.y * 1.5f * Time.deltaTime);
+            modifiedGravity *= (1.5f * Time.deltaTime);
         }
 
-        Vector2 moveAmount = new Vector2 (currentMoveSpeed, entityRigidbody.velocity.y);
+        Vector2 moveAmount = new Vector2 (currentMoveSpeed, entityRigidbody.velocity.y + modifiedGravity);
         entityRigidbody.velocity = moveAmount;
     }
 
