@@ -42,4 +42,15 @@ public class GroundedController : MonoBehaviour
     {
         return isGrounded;
     }
+
+    public void ReactToPlayerJump()
+    {
+        this.isGrounded = false;
+
+        if(delayStopBeingGrounded != null)
+        {
+            StopCoroutine(delayStopBeingGrounded);
+            delayStopBeingGrounded = null;
+        }
+    }
 }
