@@ -17,11 +17,15 @@ public class PlayerInput : MonoBehaviour
 
         moveDirectionX = Input.GetAxisRaw("Horizontal");
 
+        playerMovement.MoveInDirection(moveDirectionX);
+
         if (Input.GetButtonDown("Jump"))
         {
             playerMovement.Jump();
         }
-
-        playerMovement.MoveInDirection(moveDirectionX);
+        if (Input.GetButtonUp("Jump"))
+        {
+            playerMovement.CutJumpHeight();
+        }
     }
 }
