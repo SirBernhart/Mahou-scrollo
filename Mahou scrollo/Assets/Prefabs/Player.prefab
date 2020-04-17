@@ -176,9 +176,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508b0b867838a694ca68204927ec9c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 8
-  jumpVelocity: 5
-  inputMemoryMaxTime: 0.3
+  maxMovespeed: 6
+  acceleration: 3
+  deacceleration: 5
+  jumpVelocity: 12
+  cutJumpHeightAmount: 0.5
+  gravityScale: 1.5
+  inputMemoryMaxTime: 0.1
   entityRigidbody: {fileID: 265088355785211741}
   groundedController: {fileID: 114573387749449759}
 --- !u!1 &265088357546141959
@@ -251,7 +255,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7482013016802572054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.2, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 265088355785211742}
