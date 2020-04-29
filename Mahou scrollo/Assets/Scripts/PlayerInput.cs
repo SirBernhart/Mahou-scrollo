@@ -6,6 +6,7 @@ public class PlayerInput : MonoBehaviour
 {
     // External references
     [SerializeField] private EntityMovement playerMovement;
+    [SerializeField] private TransformationController transformationController;
 
     // Internal variables
     private float moveDirectionX;
@@ -26,6 +27,12 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetButtonUp("Jump"))
         {
             playerMovement.CutJumpHeight();
+        }
+
+        if (Input.GetButtonDown("Transform"))
+        {
+            //playerMovement.StopAllMovement();
+            transformationController.Transform();
         }
     }
 }
