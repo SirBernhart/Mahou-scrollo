@@ -12,6 +12,7 @@ public class BasicEnemyBehaviour : MonoBehaviour
 
 
     public GameObject playerReference;
+    private Health playerHealthReference;
 
     private Coroutine attacking;
 
@@ -82,6 +83,11 @@ public class BasicEnemyBehaviour : MonoBehaviour
 
         yield return new WaitForSeconds(1);
         Debug.Log("Attack");
+        if(playerHealthReference == null)
+        {
+            playerHealthReference = playerReference.transform.GetComponentInChildren<Health>();
+        }
+        playerHealthReference.ReduceHealth(1);
 
         canChangeState = true;
         ChangeState(BehaviourState.Idle);
