@@ -111,6 +111,11 @@ public class EntityMovement : MonoBehaviour
         }
     }
 
+    public void StopWalking()
+    {
+        entityRigidbody.velocity = new Vector2 (0, entityRigidbody.velocity.y);
+    }
+
     private IEnumerator RememberJumpInputTimer()
     {
         for(float i = 0 ; i < inputMemoryMaxTime ; i += Time.deltaTime)
