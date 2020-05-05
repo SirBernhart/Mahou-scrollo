@@ -13,23 +13,28 @@ public class GroundedController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == groundTag)
+        {
             isGrounded = true;
 
-        if(delayStopBeingGrounded != null)
-        {
-            StopCoroutine(delayStopBeingGrounded);
-            delayStopBeingGrounded = null;
+            if(delayStopBeingGrounded != null)
+            {
+                StopCoroutine(delayStopBeingGrounded);
+                delayStopBeingGrounded = null;
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(delayStopBeingGrounded != null)
+        if(collision.tag == groundTag)
         {
-            StopCoroutine(delayStopBeingGrounded);
-        }
+            if(delayStopBeingGrounded != null)
+            {
+                StopCoroutine(delayStopBeingGrounded);
+            }
 
-        delayStopBeingGrounded = StartCoroutine("DelayStopBeingGrounded");
+            delayStopBeingGrounded = StartCoroutine("DelayStopBeingGrounded");
+        }
     }
 
     private IEnumerator DelayStopBeingGrounded()
