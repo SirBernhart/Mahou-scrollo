@@ -5,6 +5,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] private int amount;
+    [SerializeField] private ParticleSystem deathParticles;
     [SerializeField] private GameObject graphics;
     [SerializeField] private float blinkTime;
     [SerializeField] private EntityAttack entityAttack;
@@ -50,6 +51,10 @@ public class Health : MonoBehaviour
 
     private IEnumerator KillEntity()
     {
+        if(deathParticles != null)
+        {
+            deathParticles.Play();
+        }
         yield return new WaitForSeconds(0.5f);
         Destroy(transform.parent.gameObject);
     }
