@@ -6,13 +6,13 @@ public class PlayerChaseDetector : MonoBehaviour
 {
     [SerializeField] private BasicEnemyBehaviour basicEnemyBehaviour;
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Player")
         {
-            if (basicEnemyBehaviour.playerReference == null)
+            if (basicEnemyBehaviour.GetPlayerReference() == null)
             {
-                basicEnemyBehaviour.playerReference = collision.gameObject;
+                basicEnemyBehaviour.SetPlayerReference(collision.gameObject);
             }
 
             basicEnemyBehaviour.ChangeState(BehaviourState.Chasing);
