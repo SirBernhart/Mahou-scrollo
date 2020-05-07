@@ -8,11 +8,10 @@ public class BasicEnemyBehaviour : MonoBehaviour
 {
     [SerializeField] private EntityMovement entityMovement;
     [SerializeField] private ObstacleDetector obstacleDetector;
+    [SerializeField] private EntityAttack attackController;
     private bool canChangeState = true;
 
-
     public GameObject playerReference;
-    private Health playerHealthReference;
 
     private Coroutine attacking;
 
@@ -82,21 +81,10 @@ public class BasicEnemyBehaviour : MonoBehaviour
         canChangeState = false;
 
         yield return new WaitForSeconds(1);
-        Debug.Log("Attack");
-        if(playerHealthReference == null)
-        {
-            playerHealthReference = playerReference.transform.GetComponentInChildren<Health>();
-        }
-        playerHealthReference.ReduceHealth(1);
+        attackController.DoMeleeAttack();
 
         canChangeState = true;
         ChangeState(BehaviourState.Idle);
         attacking = null;
     }
-    /*private void Patrol()
-    {
-        if(obstacleDetector)
-    }*/
-
-
 }
