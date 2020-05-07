@@ -10,11 +10,6 @@ public class AttackDetector : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            if(basicEnemyBehaviour.playerReference == null)
-            {
-                basicEnemyBehaviour.playerReference = collision.gameObject;
-            }
-
             basicEnemyBehaviour.ChangeState(BehaviourState.Attacking);
         }
     }
