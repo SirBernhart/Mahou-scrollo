@@ -9,13 +9,28 @@ public class EntityAttack : MonoBehaviour
     [SerializeField] private float attackCooldown;
     public GameObject attackIndicator;
 
+    private bool isAttacking;
+    public bool GetIsAttacking() { return isAttacking; }
+
     private bool canAttack = true;
+    public void SetCanAttack(bool canAttack)
+    {
+        this.canAttack = canAttack;
+
+        // If an entity takes damage, it flinches, becoming uncapable of attacking for a short while
+        if (!canAttack)
+        {
+            StopAllCoroutines();
+            isAttacking = false;
+        }
+    }
+    public bool GetCanAttack() { return canAttack; }
 
     public void DoMeleeAttack()
     {
         if (canAttack)
-        {
-            StartCoroutine(DisableAttackCollider());
+        { 
+            StartCoroutine(TemporalilyEnableAttackCollider());
             StartCoroutine(WaitAttackCooldown());
         }
     }
@@ -29,14 +44,19 @@ public class EntityAttack : MonoBehaviour
         }
     }
 
-    IEnumerator DisableAttackCollider()
+    IEnumerator TemporalilyEnableAttackCollider()
     {
+        // Start attack
+        isAttacking = true;
         attackCollider.enabled = true;
         attackIndicator.SetActive(true);
+
         yield return new WaitForSeconds(0.2f);
+
+        // End attack
+        isAttacking = false;
         attackCollider.enabled = false;
         attackIndicator.SetActive(false);
-
     }
 
     IEnumerator WaitAttackCooldown()
