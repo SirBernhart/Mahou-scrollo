@@ -7,6 +7,7 @@ public class PlayerInput : MonoBehaviour
     // External references
     [SerializeField] private EntityMovement playerMovement;
     [SerializeField] private TransformationController transformationController;
+    [SerializeField] private EntityAttack entityAttack;
 
     // Internal variables
     private float moveDirectionX;
@@ -33,6 +34,11 @@ public class PlayerInput : MonoBehaviour
         {
             //playerMovement.StopAllMovement();
             transformationController.Transform();
+        }
+
+        if (Input.GetButtonDown("Attack"))
+        {
+            entityAttack.DoMeleeAttack();
         }
     }
 }
