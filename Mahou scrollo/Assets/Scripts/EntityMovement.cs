@@ -16,6 +16,7 @@ public class EntityMovement : MonoBehaviour
     // External references
     [SerializeField] private Rigidbody2D entityRigidbody;
     [SerializeField] private GroundedController groundedController;
+    [SerializeField] private EntityAttack entityAttack;
 
     // Internal variables
     private Coroutine rememberJumpInputCoroutine;
@@ -32,46 +33,54 @@ public class EntityMovement : MonoBehaviour
         currentMoveSpeed = entityRigidbody.velocity.x;
         float deaccelerationDirection = (-1)*(currentMoveSpeed / Mathf.Abs(currentMoveSpeed));
 
-        // Sets the direction the entity is facing
-        if(direction > 0)
+        if (!entityAttack.GetIsAttacking())
         {
-            transform.root.transform.eulerAngles = new Vector3(0, 0, 0);
-        }
-        else if(direction < 0)
-        {
-            transform.root.transform.eulerAngles = new Vector3(0, 180, 0);
-        }
+            // Sets the direction the entity is facing
+            if(direction > 0)
+            {
+                transform.root.transform.eulerAngles = new Vector3(0, 0, 0);
+            }
+            else if(direction < 0)
+            {
+                transform.root.transform.eulerAngles = new Vector3(0, 180, 0);
+            }
 
-        // Applies
-        if (direction != 0 && Mathf.Abs(currentMoveSpeed) <= maxMovespeed)
-        {
-            if(direction == deaccelerationDirection)
+            // Applies the correct acceleration, depending on the situation
+            if (direction != 0 && Mathf.Abs(currentMoveSpeed) <= maxMovespeed)
+            {
+                if(direction == deaccelerationDirection)
+                {
+                    Deaccelerate(deaccelerationDirection);
+                }
+                else
+                {
+                    Accelerate(direction);
+                }
+            
+            }
+            // The entity stopped inputting movement but hasn't stopped moving yet
+            else if(direction == 0 && Mathf.Abs(currentMoveSpeed) > 0)
             {
                 Deaccelerate(deaccelerationDirection);
             }
+
+            float modifiedGravity = Physics2D.gravity.y;
+            if(entityRigidbody.velocity.y < 0)
+            {
+                modifiedGravity *= (2.5f * Time.deltaTime);
+            }
             else
             {
-                Accelerate(direction);
+                modifiedGravity *= (1.5f * Time.deltaTime);
             }
-            
-        }
-        else if(direction == 0 && Mathf.Abs(currentMoveSpeed) > 0)
-        {
-            Deaccelerate(deaccelerationDirection);
-        }
 
-        float modifiedGravity = Physics2D.gravity.y;
-        if(entityRigidbody.velocity.y < 0)
-        {
-            modifiedGravity *= (2.5f * Time.deltaTime);
+            Vector2 moveAmount = new Vector2 (currentMoveSpeed, entityRigidbody.velocity.y + modifiedGravity);
+            entityRigidbody.velocity = moveAmount;
         }
         else
         {
-            modifiedGravity *= (1.5f * Time.deltaTime);
+            StopWalking();
         }
-
-        Vector2 moveAmount = new Vector2 (currentMoveSpeed, entityRigidbody.velocity.y + modifiedGravity);
-        entityRigidbody.velocity = moveAmount;
     }
 
     private void Accelerate(float direction)
@@ -95,25 +104,28 @@ public class EntityMovement : MonoBehaviour
 
     public void Jump()
     {
-        if (groundedController.GetIsGrounded())
+        if (!entityAttack.GetIsAttacking())
         {
-            if (rememberJumpInputCoroutine != null)
+            if (groundedController.GetIsGrounded())
             {
-                StopCoroutine(rememberJumpInputCoroutine);
-                rememberJumpInputCoroutine = null;
-            }
+                if (rememberJumpInputCoroutine != null)
+                {
+                    StopCoroutine(rememberJumpInputCoroutine);
+                    rememberJumpInputCoroutine = null;
+                }
 
-            entityRigidbody.velocity = new Vector2(entityRigidbody.velocity.x, jumpVelocity);
-            groundedController.ReactToPlayerJump();
-        }
-        else
-        {
-            if (rememberJumpInputCoroutine != null)
+                entityRigidbody.velocity = new Vector2(entityRigidbody.velocity.x, jumpVelocity);
+                groundedController.ReactToPlayerJump();
+            }
+            else
             {
-                StopCoroutine(rememberJumpInputCoroutine);
-            }
+                if (rememberJumpInputCoroutine != null)
+                {
+                    StopCoroutine(rememberJumpInputCoroutine);
+                }
 
-            rememberJumpInputCoroutine = StartCoroutine("RememberJumpInputTimer");
+                rememberJumpInputCoroutine = StartCoroutine("RememberJumpInputTimer");
+            }
         }
     }
 

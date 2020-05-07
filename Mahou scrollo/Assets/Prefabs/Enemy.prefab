@@ -5139,6 +5139,7 @@ MonoBehaviour:
   inputMemoryMaxTime: 0.1
   entityRigidbody: {fileID: 7477547682265900614}
   groundedController: {fileID: 8222294051684985914}
+  entityAttack: {fileID: 3851080413533262975}
 --- !u!1 &4598883840411752469
 GameObject:
   m_ObjectHideFlags: 0
