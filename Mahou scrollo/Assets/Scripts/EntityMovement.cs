@@ -32,13 +32,27 @@ public class EntityMovement : MonoBehaviour
         currentMoveSpeed = entityRigidbody.velocity.x;
         float deaccelerationDirection = (-1)*(currentMoveSpeed / Mathf.Abs(currentMoveSpeed));
 
-        if(direction != 0 && Mathf.Abs(currentMoveSpeed) <= maxMovespeed)
+        // Sets the direction the entity is facing
+        if(direction > 0)
+        {
+            transform.root.transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+        else if(direction < 0)
+        {
+            transform.root.transform.eulerAngles = new Vector3(0, 180, 0);
+        }
+
+        // Applies
+        if (direction != 0 && Mathf.Abs(currentMoveSpeed) <= maxMovespeed)
         {
             if(direction == deaccelerationDirection)
             {
                 Deaccelerate(deaccelerationDirection);
             }
-            Accelerate(direction);
+            else
+            {
+                Accelerate(direction);
+            }
             
         }
         else if(direction == 0 && Mathf.Abs(currentMoveSpeed) > 0)
