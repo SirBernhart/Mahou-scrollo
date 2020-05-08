@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba02c070ba8d2643b08a0ac54e2e8b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  sprite: {fileID: 1363980194605903351}
 --- !u!1 &3022888306851606014
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,11 +273,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e06d1588be579489b98cdb946f6a21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 5
   amount: 5
   deathParticles: {fileID: 0}
   graphics: {fileID: 5423030301540745199}
   blinkTime: 1
   entityAttack: {fileID: 2941397491369439837}
+  healthBar: {fileID: 0}
 --- !u!1 &3624260571479937827
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,7 +511,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.04, y: 0.04}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

@@ -79,7 +79,7 @@ public class EntityMovement : MonoBehaviour
         }
         else
         {
-            StopWalking();
+            StopAllMovement();
         }
     }
 
@@ -140,6 +140,11 @@ public class EntityMovement : MonoBehaviour
     public void StopWalking()
     {
         entityRigidbody.velocity = new Vector2 (0, entityRigidbody.velocity.y);
+    }
+
+    public void StopAllMovement()
+    {
+        entityRigidbody.velocity = Vector2.zero;
     }
 
     private IEnumerator RememberJumpInputTimer()

@@ -56,7 +56,6 @@ public class BasicEnemyBehaviour : MonoBehaviour
 
     private void Chase()
     {
-       // Debug.Log("IsChasing");
         attackDetector.gameObject.SetActive(true);
         // move in direction of player
         if(playerReference.transform.position.x >= transform.position.x)
@@ -78,8 +77,6 @@ public class BasicEnemyBehaviour : MonoBehaviour
     {
         if(attacking == null)
         {
-            entityMovement.StopWalking();
-
             attacking = StartCoroutine(DoAttack());
         }
     }
