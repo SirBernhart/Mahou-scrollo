@@ -337,6 +337,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &429908337 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5467090697173296482, guid: aa9cf688344ee4146880264ade560c5d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7757327970285358239}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1140,7 +1152,7 @@ PrefabInstance:
     - target: {fileID: 265088355785211742, guid: 543e4520364824e4c9d6e1788b4cbcd6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.333
+      value: -3.57
       objectReference: {fileID: 0}
     - target: {fileID: 265088355785211742, guid: 543e4520364824e4c9d6e1788b4cbcd6,
         type: 3}
@@ -1192,6 +1204,11 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6818809573187660954, guid: 543e4520364824e4c9d6e1788b4cbcd6,
+        type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 429908337}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 543e4520364824e4c9d6e1788b4cbcd6, type: 3}
 --- !u!1001 &1678268913299482160
