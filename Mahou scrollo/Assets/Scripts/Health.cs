@@ -1,19 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private int amount;
+    [SerializeField] private float maxHealth;
+    [SerializeField] private float amount;
     [SerializeField] private ParticleSystem deathParticles;
     [SerializeField] private GameObject graphics;
     [SerializeField] private float blinkTime;
     [SerializeField] private EntityAttack entityAttack;
 
+    [SerializeField] private Image healthBar;
+
     public void ReduceHealth(int amount)
     {
         this.amount -= amount;
-        Debug.Log("Ouch! Current health: " + this.amount);
+        UpdateHealthBarGraphics();
 
         StartCoroutine(Blink());
 
@@ -26,10 +30,18 @@ public class Health : MonoBehaviour
     public void IncreaseHealth(int amount)
     {
         this.amount += amount;
-        Debug.Log("Whew! Current health: " + this.amount);
+        UpdateHealthBarGraphics();
     }
 
-    public int GetAmoutOfHealth()
+    public void UpdateHealthBarGraphics()
+    {
+        if (healthBar != null)
+        {
+            healthBar.fillAmount = amount / maxHealth;
+        }
+    }
+
+    public float GetAmoutOfHealth()
     {
         return amount;
     }
