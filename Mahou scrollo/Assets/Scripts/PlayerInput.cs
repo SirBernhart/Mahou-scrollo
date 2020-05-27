@@ -8,6 +8,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private EntityMovement playerMovement;
     [SerializeField] private TransformationController transformationController;
     [SerializeField] private EntityAttack entityAttack;
+    [SerializeField] private ScreenManager screenManager;
 
     // Internal variables
     private float moveDirectionX;
@@ -39,6 +40,11 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetButtonDown("Attack"))
         {
             entityAttack.DoMeleeAttack();
+        }
+
+        if (Input.GetButtonDown("Cancel"))
+        {
+            screenManager.QuitGame();
         }
     }
 }
