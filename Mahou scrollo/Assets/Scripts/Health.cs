@@ -13,6 +13,7 @@ public class Health : MonoBehaviour
     [SerializeField] private EntityAttack entityAttack;
 
     [SerializeField] private Image healthBar;
+    [SerializeField] private GameObject restart;
 
     public void ReduceHealth(int amount)
     {
@@ -23,6 +24,10 @@ public class Health : MonoBehaviour
 
         if(this.amount <= 0)
         {
+            if (transform.root.tag == "Player")
+            {
+                restart.SetActive(true);
+            }
             StartCoroutine(KillEntity());
         } 
     }
@@ -68,6 +73,7 @@ public class Health : MonoBehaviour
             deathParticles.Play();
         }
         yield return new WaitForSeconds(0.5f);
+  
         Destroy(transform.parent.gameObject);
     }
 }
