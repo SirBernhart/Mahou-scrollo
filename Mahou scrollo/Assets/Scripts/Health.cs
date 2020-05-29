@@ -18,6 +18,11 @@ public class Health : MonoBehaviour
     private bool canAct = true;
     public bool GetCanAct() { return canAct; }
 
+    private void Start()
+    {
+        amount = maxHealth;
+    }
+
     public void ReduceHealth(int amount)
     {
         this.amount -= amount;
