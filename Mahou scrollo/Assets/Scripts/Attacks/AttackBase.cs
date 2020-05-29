@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class AttackBase : MonoBehaviour
 {
-    [SerializeField] protected int damage;
+    [SerializeField] protected int lightDamage;
+    [SerializeField] protected int heavyDamage;
     [SerializeField] protected float cooldown;
     [SerializeField] protected Health health;
+    [SerializeField] protected ComboManager comboManager;
+    [SerializeField] protected SpecialAttackEffectsHandler effectsHandler;
+
+    protected ComboElement currentAttack;
+    protected int currentDamageValue;
 
     protected bool isAttacking;
     public bool GetIsAttacking() { return isAttacking; }
@@ -24,13 +30,19 @@ public class AttackBase : MonoBehaviour
     }
     public bool GetCanAttack() { return canAttack; }
 
-    public void Attack()
+    public void Attack(ActionType attackType)
     {
-        if(health.GetCanAct())
-            StartCoroutine(CountAttackCooldown());
+        if (health.GetCanAct())
+        {
+            currentAttack = comboManager.AddToCombo(attackType);
+
+            currentDamageValue = currentAttack.damage;
+
+            StartCoroutine(CountAttackCooldown(currentAttack.cooldown));
+        }
     }
 
-    private IEnumerator CountAttackCooldown()
+    private IEnumerator CountAttackCooldown(float cooldown)
     {
         canAttack = false;
         yield return new WaitForSeconds(cooldown);
