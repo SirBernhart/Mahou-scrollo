@@ -8,31 +8,70 @@ public class ComboManager : MonoBehaviour
     private float comboTimer = 0;
     private Coroutine comboTimerCoroutine;
 
-    //private ComboElement[] currentCombo = new ComboElement[5];
+    [SerializeField] private List<ComboElement> possibleComboElements;
     private ComboElement currentElement;
 
-    public void AddToCombo(ComboElement newElement)
+    public ComboElement AddToCombo(ActionType actionType)
     {
-        if (newElement.isFinisher)
+        ComboElement newElement = TranslateActionToComboElement(actionType);
+        // Didn't find a possible element to follow up the current action. Will return a basic action
+        if (newElement == null)
         {
             ClearCombo();
+            return TranslateActionToComboElement(actionType);
+        }
+        else if (newElement.isFinisher)
+        {
+            StartCoroutine(DelayClearingCombo());
+            return newElement;
+        }
+        if (comboTimerCoroutine == null)
+            StartCoroutine(StartComboResetTimer());
+
+        currentElement = newElement;
+
+        return currentElement;
+    }
+
+    private ComboElement TranslateActionToComboElement(ActionType actionType)
+    {
+        if(currentElement == null)
+        {
+            switch (actionType)
+            {
+                case ActionType.lightMelee:
+                    currentElement = FindElementOfThisName("Jab");
+                    break;
+
+                case ActionType.heavyMelee:
+                    currentElement = FindElementOfThisName("Kick");
+                    break;
+
+                case ActionType.lightRanged:
+                    currentElement = FindElementOfThisName("SunBolt");
+                    break;
+            }
+            return currentElement;
         }
         else
         {
-            if (comboTimerCoroutine == null)
-                StartCoroutine(StartComboResetTimer());
-
-            if (currentElement != null && CheckIfNewElementMatchesNextElements(newElement))
+            foreach(ComboElement nextElement in currentElement.nextElements)
             {
-                currentElement = newElement;
+                if (nextElement.actionToTrigger == actionType)
+                    return nextElement;
             }
-            else
-            {
-                StopCoroutine(comboTimerCoroutine);
-                ClearCombo();
-            }
-            comboTimer = 0;
         }
+        return null;
+    }
+
+    private ComboElement FindElementOfThisName (string elementName)
+    {
+        foreach(ComboElement element in possibleComboElements)
+        {
+            if (element.name == elementName)
+                return element;
+        }
+        return null;
     }
 
     private bool CheckIfNewElementMatchesNextElements(ComboElement newElement)
@@ -48,16 +87,26 @@ public class ComboManager : MonoBehaviour
 
     private void ClearCombo()
     {
+        if(comboTimerCoroutine != null)
+            StopCoroutine(comboTimerCoroutine);
         currentElement = null;
+        comboTimer = 0;
+    }
+
+    private IEnumerator DelayClearingCombo()
+    {
+        yield return new WaitForEndOfFrame();
+        ClearCombo();
     }
 
     private IEnumerator StartComboResetTimer()
     {
-        for(; comboTimer < comboResetTime ; comboTimer += Time.deltaTime)
+        for(comboTimer = 0 ; comboTimer < comboResetTime ; comboTimer += Time.deltaTime)
         {
             yield return null;  
         }
 
+        comboTimerCoroutine = null;
         comboTimer = 0;
         ClearCombo();
     }
