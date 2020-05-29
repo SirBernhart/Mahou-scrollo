@@ -48,10 +48,11 @@ MonoBehaviour:
   maxHealth: 5
   amount: 3
   deathParticles: {fileID: 3298157660420254686}
-  graphics: {fileID: 3341178581721838915}
+  graphics: {fileID: 6964294196550413798}
   blinkTime: 0.5
-  entityAttack: {fileID: 3851080413533262975}
   healthBar: {fileID: 0}
+  restart: {fileID: 0}
+  flinchTime: 0.3
 --- !u!198 &3298157660420254686
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -5165,7 +5166,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 38b1fd2314e66c74a9854a3bb6b11d1d, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -10118,8 +10119,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  cooldown: 0.5
+  health: {fileID: 3486462535719906230}
   attackCollider: {fileID: 3488700414378291640}
-  attackCooldown: 0.5
+  attackDuration: 0.2
   attackIndicator: {fileID: 568581955762989616}
 --- !u!61 &3488700414378291640
 BoxCollider2D:

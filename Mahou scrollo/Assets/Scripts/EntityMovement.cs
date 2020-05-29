@@ -16,7 +16,7 @@ public class EntityMovement : MonoBehaviour
     // External references
     [SerializeField] private Rigidbody2D entityRigidbody;
     [SerializeField] private GroundedController groundedController;
-    [SerializeField] private EntityAttack entityAttack;
+    [SerializeField] private AttackBase entityAttack;
 
     // Internal variables
     private Coroutine rememberJumpInputCoroutine;

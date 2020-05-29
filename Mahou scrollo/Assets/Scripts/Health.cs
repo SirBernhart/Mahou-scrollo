@@ -8,21 +8,31 @@ public class Health : MonoBehaviour
     [SerializeField] private float maxHealth;
     [SerializeField] private float amount;
     [SerializeField] private ParticleSystem deathParticles;
-    [SerializeField] private GameObject graphics;
+    [SerializeField] private SpriteRenderer graphics;
     [SerializeField] private float blinkTime;
-    [SerializeField] private EntityAttack entityAttack;
 
     [SerializeField] private Image healthBar;
+    [SerializeField] private GameObject restart;
+
+    [SerializeField] private float flinchTime;
+    private bool canAct = true;
+    public bool GetCanAct() { return canAct; }
 
     public void ReduceHealth(int amount)
     {
         this.amount -= amount;
         UpdateHealthBarGraphics();
 
+        StartCoroutine(Flinch());
         StartCoroutine(Blink());
 
         if(this.amount <= 0)
         {
+            if (transform.root.tag == "Player")
+            {
+                restart.SetActive(true);
+            }
+            StopAllCoroutines();
             StartCoroutine(KillEntity());
         } 
     }
@@ -48,26 +58,43 @@ public class Health : MonoBehaviour
 
     private IEnumerator Blink()
     {
-        entityAttack.SetCanAttack(false);
+        Color bleakColor = graphics.color;
+        Color transparentColor = new Color(bleakColor.r, bleakColor.g, bleakColor.b, 50f);
 
-        for(float timer = 0 ; timer < blinkTime ; timer += Time.deltaTime)
+        WaitForSeconds timeBetweenBlinks = new WaitForSeconds(0.1f);
+
+        bool isTransparent = false;
+        for (float timer = 0 ; timer < blinkTime ; timer += Time.deltaTime)
         {
-            graphics.SetActive(!graphics.activeInHierarchy);
+            if (isTransparent)
+                graphics.material.color = bleakColor;
+            else
+                graphics.material.color = transparentColor;
+
+            isTransparent = !isTransparent;
 
             yield return null;
         }
-        graphics.SetActive(true);
+        graphics.material.color = bleakColor;
+    }
 
-        entityAttack.SetCanAttack(true);
+    private IEnumerator Flinch()
+    {
+        canAct = false;
+        yield return new WaitForSeconds(flinchTime);
+        canAct = true;
     }
 
     private IEnumerator KillEntity()
     {
+        canAct = false;
+
         if(deathParticles != null)
         {
             deathParticles.Play();
         }
         yield return new WaitForSeconds(0.5f);
+  
         Destroy(transform.parent.gameObject);
     }
 }

@@ -2,36 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityAttack : MonoBehaviour
+public class MeleeAttack : AttackBase
 {
-    [SerializeField] private int damage;
     [SerializeField] private Collider2D attackCollider;
-    [SerializeField] private float attackCooldown;
+    [SerializeField] private float attackDuration;
+    
     public GameObject attackIndicator;
 
-    private bool isAttacking;
-    public bool GetIsAttacking() { return isAttacking; }
-
-    private bool canAttack = true;
-    public void SetCanAttack(bool canAttack)
+    public new void Attack()
     {
-        this.canAttack = canAttack;
-
-        // If an entity takes damage, it flinches, becoming uncapable of attacking for a short while
-        if (!canAttack)
-        {
-            StopAllCoroutines();
-            isAttacking = false;
-        }
-    }
-    public bool GetCanAttack() { return canAttack; }
-
-    public void DoMeleeAttack()
-    {
-        if (canAttack)
+        if (canAttack && health.GetCanAct())
         { 
             StartCoroutine(TemporalilyEnableAttackCollider());
-            StartCoroutine(WaitAttackCooldown());
+            base.Attack();
         }
     }
 
@@ -51,18 +34,11 @@ public class EntityAttack : MonoBehaviour
         attackCollider.enabled = true;
         attackIndicator.SetActive(true);
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(attackDuration);
 
         // End attack
         isAttacking = false;
         attackCollider.enabled = false;
         attackIndicator.SetActive(false);
-    }
-
-    IEnumerator WaitAttackCooldown()
-    {
-        canAttack = false;
-        yield return new WaitForSeconds(attackCooldown);
-        canAttack = true;
     }
 }
