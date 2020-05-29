@@ -10,7 +10,6 @@ public class Health : MonoBehaviour
     [SerializeField] private ParticleSystem deathParticles;
     [SerializeField] private SpriteRenderer graphics;
     [SerializeField] private float blinkTime;
-    [SerializeField] private EntityAttack entityAttack;
 
     [SerializeField] private Image healthBar;
     [SerializeField] private GameObject restart;
@@ -59,7 +58,6 @@ public class Health : MonoBehaviour
 
     private IEnumerator Blink()
     {
-        entityAttack.SetCanAttack(false);
         Color bleakColor = graphics.color;
         Color transparentColor = new Color(bleakColor.r, bleakColor.g, bleakColor.b, 50f);
 
@@ -80,7 +78,6 @@ public class Health : MonoBehaviour
         graphics.material.color = bleakColor;
     }
 
-        entityAttack.SetCanAttack(true);
     private IEnumerator Flinch()
     {
         canAct = false;
