@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e06d1588be579489b98cdb946f6a21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
-  amount: 3
+  maxHealth: 10
+  amount: 4
   deathParticles: {fileID: 3298157660420254686}
   graphics: {fileID: 6964294196550413798}
   blinkTime: 0.5
@@ -5062,6 +5062,49 @@ MonoBehaviour:
   entityRigidbody: {fileID: 7477547682265900614}
   groundedController: {fileID: 8222294051684985914}
   entityAttack: {fileID: 3851080413533262975}
+--- !u!1 &4285774896719667814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1205713008300512232}
+  - component: {fileID: 2471883717468398361}
+  m_Layer: 0
+  m_Name: Special Attack Effects Handler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1205713008300512232
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4285774896719667814}
+  m_LocalRotation: {x: -0, y: -0.008726558, z: -0, w: 0.999962}
+  m_LocalPosition: {x: 0.12944464, y: -0.03997674, z: -2.2757952}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2824768389454898749}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2471883717468398361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4285774896719667814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a0ce55d93be5b0438326be98f4db157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4598883840411752469
 GameObject:
   m_ObjectHideFlags: 0
@@ -5147,6 +5190,8 @@ Transform:
   - {fileID: 7563020499356088570}
   - {fileID: 5010133038784283274}
   - {fileID: 8861064478909706503}
+  - {fileID: 7391106256156677186}
+  - {fileID: 1205713008300512232}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 1, z: 0}
@@ -5187,6 +5232,52 @@ CapsuleCollider2D:
   m_Offset: {x: 0.119383626, y: -0.25923425}
   m_Size: {x: 1.7650083, y: 0.955902}
   m_Direction: 1
+--- !u!1 &6470455915912953348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7391106256156677186}
+  - component: {fileID: 7730215061301677590}
+  m_Layer: 0
+  m_Name: Combo manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7391106256156677186
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6470455915912953348}
+  m_LocalRotation: {x: -0, y: -0.008726558, z: -0, w: 0.999962}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2824768389454898749}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7730215061301677590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6470455915912953348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d029435939deef4b9797cc53b9c9008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  comboResetTime: 0.5
+  possibleComboElements:
+  - {fileID: 11400000, guid: 1ff71bc858935704e9eb76e7588b6683, type: 2}
 --- !u!1 &6562438199844913046
 GameObject:
   m_ObjectHideFlags: 0
@@ -10118,9 +10209,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b77f434dd2db6d04ea69fa42deff9eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  lightDamage: 0
+  heavyDamage: 0
   cooldown: 0.5
   health: {fileID: 3486462535719906230}
+  comboManager: {fileID: 7730215061301677590}
+  effectsHandler: {fileID: 2471883717468398361}
   attackCollider: {fileID: 3488700414378291640}
   attackDuration: 0.2
   attackIndicator: {fileID: 568581955762989616}
