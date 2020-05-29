@@ -10,9 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67282947340f9a44287efaa363186552, type: 3}
-  m_Name: Punch
+  m_Name: Jab
   m_EditorClassIdentifier: 
-  followUpAttacks: []
+  nextElements:
+  - {fileID: 11400000, guid: 932ec528698927e43bc93207f302a533, type: 2}
   specialEffect: 0
-  damage: 0
+  specialEffectIntensity: 0
+  actionToTrigger: 0
+  cooldown: 0.1
+  damage: 1
   isFinisher: 0
