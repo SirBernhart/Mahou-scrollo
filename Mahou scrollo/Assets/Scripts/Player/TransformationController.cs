@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class TransformationController : MonoBehaviour
 {
-
-    [SerializeField] private GameObject normalSprite;
-    [SerializeField] private GameObject magicSprite;
+    [SerializeField] private Sprite normalSprite;
+    [SerializeField] private Sprite magicSprite;
+    [SerializeField] private SpriteRenderer currentSpriteRenderer;
 
     private bool isInNormalForm = true;
+
+    public bool GetIsInNormalForm() { return isInNormalForm; }
 
     public void Transform()
     {
         if (isInNormalForm)
         {
-            normalSprite.SetActive(false);
-            magicSprite.SetActive(true);
+            currentSpriteRenderer.sprite = magicSprite;
             isInNormalForm = false;
         }
         else
         {
-            magicSprite.SetActive(false);
-            normalSprite.SetActive(true);
+            currentSpriteRenderer.sprite = normalSprite;
             isInNormalForm = true;
         }
     }
