@@ -96,7 +96,7 @@ public class BasicEnemyBehaviour : MonoBehaviour
         canChangeState = false;
 
         yield return new WaitForSeconds(0.8f);
-        attackController.Attack();
+        attackController.Attack(ActionType.lightMelee);
         yield return new WaitForSeconds(0.3f);
         canChangeState = true;
         playerChaseDetector.gameObject.SetActive(true);
