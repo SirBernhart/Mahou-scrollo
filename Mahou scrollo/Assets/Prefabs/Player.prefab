@@ -385,6 +385,7 @@ MonoBehaviour:
   health: {fileID: 6818809573187660954}
   attackProjectile: {fileID: 7323686058638146211, guid: 2aedbe50729744e4780179305e599798,
     type: 3}
+  projectileSpeed: 15
 --- !u!61 &6237237455432675771
 BoxCollider2D:
   m_ObjectHideFlags: 0
