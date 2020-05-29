@@ -1230,7 +1230,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "A, D = movimento / J = ataque\nEspa\xE7o = pulo / E = transforma\xE7\xE3o"
+  m_Text: "A, D = movimento / Espa\xE7o = pulo\nJ = ataque LEVE / K = ataque PESADO\nE
+    = transforma\xE7\xE3o"
 --- !u!222 &1908297610
 CanvasRenderer:
   m_ObjectHideFlags: 0
