@@ -131,8 +131,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMovespeed: 6
-  acceleration: 3
-  deacceleration: 5
+  acceleration: 4
+  deacceleration: 6
   jumpVelocity: 12
   cutJumpHeightAmount: 0.5
   gravityScale: 1.5
