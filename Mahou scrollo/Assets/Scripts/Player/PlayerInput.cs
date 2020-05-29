@@ -40,15 +40,26 @@ public class PlayerInput : MonoBehaviour
                 transformationController.Transform();
             }
 
-            if (Input.GetButtonDown("Attack"))
+            if (Input.GetButtonDown("LightAttack"))
             {
                 if (transformationController.GetIsInNormalForm())
                 {
-                    meleeAttack.Attack();
+                    meleeAttack.Attack(ActionType.lightMelee);
                 }
                 else
                 {
-                    rangedAttack.Attack();
+                    rangedAttack.Attack(ActionType.lightRanged);
+                }
+            }
+            if (Input.GetButtonDown("HeavyAttack"))
+            {
+                if (transformationController.GetIsInNormalForm())
+                {
+                    meleeAttack.Attack(ActionType.heavyMelee);
+                }
+                else
+                {
+                    rangedAttack.Attack(ActionType.heavyRanged);
                 }
             }
         }
