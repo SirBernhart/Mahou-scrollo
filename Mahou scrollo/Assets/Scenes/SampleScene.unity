@@ -229,6 +229,12 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!4 &100933464 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 265088355785211742, guid: 543e4520364824e4c9d6e1788b4cbcd6,
+    type: 3}
+  m_PrefabInstance: {fileID: 265088356184924176}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &320258619
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,6 +407,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 519420032}
+  - component: {fileID: 519420030}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   m_Layer: 0
@@ -418,6 +425,20 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ad32010ebc1cdf4ba2bc6e2c697c3bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToFollow: {fileID: 100933464}
+  offset: {x: 0, y: 2, z: -10}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
