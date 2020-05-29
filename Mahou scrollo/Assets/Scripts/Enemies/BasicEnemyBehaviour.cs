@@ -9,7 +9,7 @@ public class BasicEnemyBehaviour : MonoBehaviour
     [SerializeField] private EntityMovement entityMovement;
     [SerializeField] private PlayerChaseDetector playerChaseDetector;
     [SerializeField] private AttackDetector attackDetector;
-    [SerializeField] private EntityAttack attackController;
+    [SerializeField] private MeleeAttack attackController;
     private bool canChangeState = true;
 
     private GameObject playerReference;
@@ -96,7 +96,7 @@ public class BasicEnemyBehaviour : MonoBehaviour
         canChangeState = false;
 
         yield return new WaitForSeconds(0.8f);
-        attackController.DoMeleeAttack();
+        attackController.Attack();
         yield return new WaitForSeconds(0.3f);
         canChangeState = true;
         playerChaseDetector.gameObject.SetActive(true);
