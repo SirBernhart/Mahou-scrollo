@@ -10,6 +10,9 @@ public class BasicCameraFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = objectToFollow.position + offset;
+        if(objectToFollow != null)
+        {
+            transform.position = objectToFollow.position + offset;
+        }
     }
 }
