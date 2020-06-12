@@ -36,7 +36,7 @@ public class PlayerInput : MonoBehaviour
 
             if (Input.GetButtonDown("Transform"))
             {
-                //playerMovement.StopAllMovement();
+                //playerMovement.StopiAllMovement();
                 transformationController.Transform();
             }
 
@@ -69,7 +69,7 @@ public class PlayerInput : MonoBehaviour
         // Interface controls
         if (Input.GetButtonDown("Cancel"))
         {
-            screenManager.QuitGame();
+            screenManager.SetPauseMenuActive();
         }
     }
 }
