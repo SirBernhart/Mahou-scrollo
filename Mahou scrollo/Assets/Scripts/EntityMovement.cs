@@ -17,6 +17,7 @@ public class EntityMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D entityRigidbody;
     [SerializeField] private GroundedController groundedController;
     [SerializeField] private AttackBase entityAttack;
+    [SerializeField] private Animator animator;
 
     // Internal variables
     private Coroutine rememberJumpInputCoroutine;
@@ -56,7 +57,6 @@ public class EntityMovement : MonoBehaviour
                 {
                     Accelerate(direction);
                 }
-            
             }
             // The entity stopped inputting movement but hasn't stopped moving yet
             else if(direction == 0 && Mathf.Abs(currentMoveSpeed) > 0)
@@ -81,6 +81,8 @@ public class EntityMovement : MonoBehaviour
         {
             StopAllMovement();
         }
+        if(animator != null)
+            animator.SetBool("isRunning", entityRigidbody.velocity.x != 0);
     }
 
     private void Accelerate(float direction)
