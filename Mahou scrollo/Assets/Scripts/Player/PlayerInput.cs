@@ -36,19 +36,30 @@ public class PlayerInput : MonoBehaviour
 
             if (Input.GetButtonDown("Transform"))
             {
-                //playerMovement.StopAllMovement();
+                //playerMovement.StopiAllMovement();
                 transformationController.Transform();
             }
 
-            if (Input.GetButtonDown("Attack"))
+            if (Input.GetButtonDown("LightAttack"))
             {
                 if (transformationController.GetIsInNormalForm())
                 {
-                    meleeAttack.Attack();
+                    meleeAttack.Attack(ActionType.lightMelee);
                 }
                 else
                 {
-                    rangedAttack.Attack();
+                    rangedAttack.Attack(ActionType.lightRanged);
+                }
+            }
+            if (Input.GetButtonDown("HeavyAttack"))
+            {
+                if (transformationController.GetIsInNormalForm())
+                {
+                    meleeAttack.Attack(ActionType.heavyMelee);
+                }
+                else
+                {
+                    rangedAttack.Attack(ActionType.heavyRanged);
                 }
             }
         }
@@ -58,7 +69,7 @@ public class PlayerInput : MonoBehaviour
         // Interface controls
         if (Input.GetButtonDown("Cancel"))
         {
-            screenManager.QuitGame();
+            screenManager.SetPauseMenuActive();
         }
     }
 }

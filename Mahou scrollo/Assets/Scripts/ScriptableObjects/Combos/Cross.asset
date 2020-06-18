@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67282947340f9a44287efaa363186552, type: 3}
+  m_Name: Cross
+  m_EditorClassIdentifier: 
+  nextElements:
+  - {fileID: 11400000, guid: 07834578d11706d48a5a1d2f00580158, type: 2}
+  specialEffect: 0
+  specialEffectIntensity: 0
+  actionToTrigger: 1
+  cooldown: 0.2
+  damage: 2
+  isFinisher: 0

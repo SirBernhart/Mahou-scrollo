@@ -14,9 +14,16 @@ public class Health : MonoBehaviour
     [SerializeField] private Image healthBar;
     [SerializeField] private GameObject restart;
 
+    public Score score;
+
     [SerializeField] private float flinchTime;
     private bool canAct = true;
     public bool GetCanAct() { return canAct; }
+
+    private void Start()
+    {
+        amount = maxHealth;
+    }
 
     public void ReduceHealth(int amount)
     {
@@ -93,6 +100,10 @@ public class Health : MonoBehaviour
         {
             deathParticles.Play();
         }
+
+        if(score != null)
+            score.IncreaseScore(15);
+
         yield return new WaitForSeconds(0.5f);
   
         Destroy(transform.parent.gameObject);
