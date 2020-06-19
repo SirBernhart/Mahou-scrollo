@@ -30,7 +30,6 @@ public class BasicEnemyBehaviour : MonoBehaviour
         switch (currentState)
         {
             case BehaviourState.Chasing:
-                Debug.Log("Chasing");
                 Chase();
                 break;
 
@@ -39,12 +38,10 @@ public class BasicEnemyBehaviour : MonoBehaviour
                 break;
 
             case BehaviourState.Attacking:
-                Debug.Log("Attacking");
                 Attacking();
                 break;
 
             case BehaviourState.Patrol:
-                Debug.Log("Patrolling");
                 Patrol();
                 break;
 
