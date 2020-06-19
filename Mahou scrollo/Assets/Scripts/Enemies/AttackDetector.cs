@@ -13,12 +13,4 @@ public class AttackDetector : MonoBehaviour
             basicEnemyBehaviour.ChangeState(BehaviourState.Attacking);
         }
     }
-
-   /* private void OnTriggerExit2D(Collider2D collision)
-    {
-        if(collision.tag == "Player")
-        {
-            basicEnemyBehaviour.ChangeState(BehaviourState.Chasing);
-        }
-    }*/
 }
