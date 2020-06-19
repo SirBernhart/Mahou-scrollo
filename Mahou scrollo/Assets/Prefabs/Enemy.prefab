@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3486462535719906230}
   - component: {fileID: 3298157660420254686}
   - component: {fileID: 2878558484133984958}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,6 +52,7 @@ MonoBehaviour:
   blinkTime: 0.5
   healthBar: {fileID: 0}
   restart: {fileID: 0}
+  score: {fileID: 0}
   flinchTime: 0.3
 --- !u!198 &3298157660420254686
 ParticleSystem:
@@ -4785,7 +4786,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8861064478909706503}
   - component: {fileID: 3634255179176372483}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Attack indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4867,7 +4868,7 @@ GameObject:
   - component: {fileID: 7563020499356088570}
   - component: {fileID: 3471581235130271586}
   - component: {fileID: 4819507288306720665}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Attack detector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4927,6 +4928,51 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.270937, y: 1.0143411}
   m_EdgeRadius: 0
+--- !u!1 &2418331639902110975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7971880509768217902}
+  - component: {fileID: 8388090740811997678}
+  m_Layer: 9
+  m_Name: ObstacleDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7971880509768217902
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2418331639902110975}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.1, y: 0, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1148140392240057176}
+  m_Father: {fileID: 2824768389454898749}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8388090740811997678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2418331639902110975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43aabcabf7fbfa641a22c488fd3510d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raycastPoint: {fileID: 1148140392240057176}
 --- !u!1 &3341178581721838915
 GameObject:
   m_ObjectHideFlags: 0
@@ -4937,7 +4983,7 @@ GameObject:
   m_Component:
   - component: {fileID: 852893352040165711}
   - component: {fileID: 6964294196550413798}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5019,7 +5065,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5303796843352898217}
   - component: {fileID: 4665995538727706516}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Movement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5062,6 +5108,7 @@ MonoBehaviour:
   entityRigidbody: {fileID: 7477547682265900614}
   groundedController: {fileID: 8222294051684985914}
   entityAttack: {fileID: 3851080413533262975}
+  animator: {fileID: 0}
 --- !u!1 &4285774896719667814
 GameObject:
   m_ObjectHideFlags: 0
@@ -5072,7 +5119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1205713008300512232}
   - component: {fileID: 2471883717468398361}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Special Attack Effects Handler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5115,7 +5162,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8526452216040866988}
   - component: {fileID: 1434422087097000267}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Behaviour controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5152,6 +5199,8 @@ MonoBehaviour:
   playerChaseDetector: {fileID: 8401621131696106172}
   attackDetector: {fileID: 3471581235130271586}
   attackController: {fileID: 3851080413533262975}
+  raycastHelper: {fileID: 8388090740811997678}
+  groundedController: {fileID: 8222294051684985914}
 --- !u!1 &6284722760674732638
 GameObject:
   m_ObjectHideFlags: 0
@@ -5163,7 +5212,7 @@ GameObject:
   - component: {fileID: 2824768389454898749}
   - component: {fileID: 7477547682265900614}
   - component: {fileID: 1528731035501106546}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -5192,6 +5241,7 @@ Transform:
   - {fileID: 8861064478909706503}
   - {fileID: 7391106256156677186}
   - {fileID: 1205713008300512232}
+  - {fileID: 7971880509768217902}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 1, z: 0}
@@ -5242,7 +5292,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7391106256156677186}
   - component: {fileID: 7730215061301677590}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Combo manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5289,7 +5339,7 @@ GameObject:
   - component: {fileID: 3125578806156824878}
   - component: {fileID: 8222294051684985914}
   - component: {fileID: 8394195589008866601}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Grounded controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5351,7 +5401,7 @@ GameObject:
   - component: {fileID: 3543883979060748250}
   - component: {fileID: 8445302161579555899}
   - component: {fileID: 7176578701984953384}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10105,7 +10155,7 @@ GameObject:
   - component: {fileID: 6647512592186530131}
   - component: {fileID: 8401621131696106172}
   - component: {fileID: 9194772789356767889}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player chase detector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10163,7 +10213,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 14, y: 5}
+  m_Size: {x: 17.820803, y: 11.777716}
   m_EdgeRadius: 0
 --- !u!1 &7411493663356603380
 GameObject:
@@ -10176,7 +10226,7 @@ GameObject:
   - component: {fileID: 5010133038784283274}
   - component: {fileID: 3851080413533262975}
   - component: {fileID: 3488700414378291640}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10244,3 +10294,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0147426, y: 1.0073681}
   m_EdgeRadius: 0
+--- !u!1 &7767174244513894490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1148140392240057176}
+  m_Layer: 9
+  m_Name: Raycast point
+  m_TagString: Untagged
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1148140392240057176
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7767174244513894490}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: 0, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7971880509768217902}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
