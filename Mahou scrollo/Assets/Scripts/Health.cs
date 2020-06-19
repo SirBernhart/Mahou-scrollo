@@ -8,8 +8,8 @@ public class Health : MonoBehaviour
     [SerializeField] private float maxHealth;
     [SerializeField] private float amount;
     [SerializeField] private ParticleSystem deathParticles;
-    [SerializeField] private SpriteRenderer graphics;
-    [SerializeField] private float blinkTime;
+    public SpriteRenderer[] graphics;
+    [SerializeField] private float blinkTimes;
 
     [SerializeField] private Image healthBar;
     [SerializeField] private GameObject restart;
@@ -64,25 +64,34 @@ public class Health : MonoBehaviour
     }
 
     private IEnumerator Blink()
-    {
-        Color bleakColor = graphics.color;
+    { 
+        Color bleakColor = Color.white;
         Color transparentColor = new Color(bleakColor.r, bleakColor.g, bleakColor.b, 50f);
 
         WaitForSeconds timeBetweenBlinks = new WaitForSeconds(0.1f);
 
         bool isTransparent = false;
-        for (float timer = 0 ; timer < blinkTime ; timer += Time.deltaTime)
+            for (float times = 0 ; times < blinkTimes ; ++times)
+            {
+                if (isTransparent)
+                    foreach (SpriteRenderer piece in graphics)
+                    {
+                        piece.material.color = bleakColor;
+                    }
+                else
+                    foreach (SpriteRenderer piece in graphics)
+                    {
+                        piece.material.color = transparentColor;
+                    }
+
+                isTransparent = !isTransparent;
+
+                yield return timeBetweenBlinks;
+            }
+        foreach (SpriteRenderer piece in graphics)
         {
-            if (isTransparent)
-                graphics.material.color = bleakColor;
-            else
-                graphics.material.color = transparentColor;
-
-            isTransparent = !isTransparent;
-
-            yield return null;
+            piece.material.color = bleakColor;
         }
-        graphics.material.color = bleakColor;
     }
 
     private IEnumerator Flinch()
