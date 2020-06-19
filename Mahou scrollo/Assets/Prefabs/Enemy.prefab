@@ -48,8 +48,9 @@ MonoBehaviour:
   maxHealth: 10
   amount: 4
   deathParticles: {fileID: 3298157660420254686}
-  graphics: {fileID: 6964294196550413798}
-  blinkTime: 0.5
+  graphics:
+  - {fileID: 6964294196550413798}
+  blinkTimes: 3
   healthBar: {fileID: 0}
   restart: {fileID: 0}
   score: {fileID: 0}
