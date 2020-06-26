@@ -360,7 +360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba02c070ba8d2643b08a0ac54e2e8b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalForm: {fileID: 0}
+  normalForm: {fileID: 8209345417415755899}
   magicForm: {fileID: 4713779664126989390}
   health: {fileID: 6818809573187660954}
   normalFormPiecesParent: {fileID: 7773887697178358999}
@@ -1175,6 +1175,12 @@ Animator:
 --- !u!4 &619206271469601997 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5726150550246202631, guid: 35cf3baaebcce604d913a36fee2828d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 5179283903725623754}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8209345417415755899 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3895041302348878257, guid: 35cf3baaebcce604d913a36fee2828d9,
     type: 3}
   m_PrefabInstance: {fileID: 5179283903725623754}
   m_PrefabAsset: {fileID: 0}
