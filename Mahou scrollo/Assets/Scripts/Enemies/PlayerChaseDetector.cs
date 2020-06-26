@@ -23,7 +23,7 @@ public class PlayerChaseDetector : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            basicEnemyBehaviour.ChangeState(BehaviourState.Idle);
+            basicEnemyBehaviour.ChangeState(BehaviourState.Patrol);
         }
     }
 }

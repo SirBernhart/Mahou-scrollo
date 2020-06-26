@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class TransformationController : MonoBehaviour
 {
-    [SerializeField] private Sprite normalSprite;
-    [SerializeField] private Sprite magicSprite;
-    [SerializeField] private SpriteRenderer currentSpriteRenderer;
+    [SerializeField] private GameObject normalForm;
+    [SerializeField] private GameObject magicForm;
+    [SerializeField] private Health health;
+    [SerializeField] private SpriteRenderer[] normalFormPieces;
+    [SerializeField] private SpriteRenderer[] magicFormPieces;
 
     private bool isInNormalForm = true;
 
@@ -16,12 +18,18 @@ public class TransformationController : MonoBehaviour
     {
         if (isInNormalForm)
         {
-            currentSpriteRenderer.sprite = magicSprite;
+            health.graphics = magicFormPieces;
+            normalForm.SetActive(false);
+            magicForm.SetActive(true);
+
             isInNormalForm = false;
         }
         else
         {
-            currentSpriteRenderer.sprite = normalSprite;
+            health.graphics = normalFormPieces;
+            normalForm.SetActive(true);
+            magicForm.SetActive(false);
+
             isInNormalForm = true;
         }
     }
