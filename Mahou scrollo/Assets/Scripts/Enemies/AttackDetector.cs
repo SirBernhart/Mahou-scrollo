@@ -8,7 +8,7 @@ public class AttackDetector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player")
+        if(collision.tag == "Player" && collision.name != "Projectile(Clone)")
         {
             basicEnemyBehaviour.ChangeState(BehaviourState.Attacking);
         }
