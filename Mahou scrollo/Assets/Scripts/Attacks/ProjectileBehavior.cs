@@ -5,8 +5,14 @@ using UnityEngine;
 public class ProjectileBehavior : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D projectileRigidbody;
+    [SerializeField] private ParticleSystem explosion;
     private float speed;
     public void SetSpeed(float speed) { this.speed = speed; }
+
+    private void Start()
+    {
+        explosion.Stop();
+    }
 
     private int damageAmount;
     public void SetDamageAmount(int damange)
@@ -37,9 +43,19 @@ public class ProjectileBehavior : MonoBehaviour
             }
             if (collision.tag != "Untagged")
             {
-                Destroy(transform.root.gameObject);
+                explosion.Play();
+                DestroyProjectile();
             }
         }
+    }
+
+    private void DestroyProjectile()
+    {
+        GetComponentInChildren<ParticleSystem>().Stop();
+        Destroy(transform.root.gameObject);
+        Destroy(transform.GetChild(1).gameObject);
+        Destroy(transform.GetChild(0).gameObject, 1f);
+        transform.DetachChildren();
     }
 
     public void SetMoveDirection(Vector2 direction)
