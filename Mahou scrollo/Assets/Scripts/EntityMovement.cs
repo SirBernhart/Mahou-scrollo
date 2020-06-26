@@ -82,7 +82,10 @@ public class EntityMovement : MonoBehaviour
             StopAllMovement();
         }
         if(animator != null)
+        {
             animator.SetBool("isRunning", entityRigidbody.velocity.x != 0);
+            animator.SetBool("isGrounded", groundedController.GetIsGrounded());
+        }
     }
 
     private void Accelerate(float direction)
@@ -108,6 +111,7 @@ public class EntityMovement : MonoBehaviour
     {
         if (!entityAttack.GetIsAttacking())
         {
+            // Jump
             if (groundedController.GetIsGrounded())
             {
                 if (rememberJumpInputCoroutine != null)
@@ -117,8 +121,11 @@ public class EntityMovement : MonoBehaviour
                 }
 
                 entityRigidbody.velocity = new Vector2(entityRigidbody.velocity.x, jumpVelocity);
+                if(animator != null)
+                    animator.SetTrigger("jumped");
                 groundedController.ReactToPlayerJump();
             }
+            // Cannot jump right now
             else
             {
                 if (rememberJumpInputCoroutine != null)
