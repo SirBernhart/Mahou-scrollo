@@ -18,6 +18,7 @@ public class Health : MonoBehaviour
 
     [SerializeField] private float flinchTime;
     private bool canAct = true;
+    private bool isDying = false;
     public bool GetCanAct() { return canAct; }
 
     private void Start()
@@ -33,7 +34,7 @@ public class Health : MonoBehaviour
         StartCoroutine(Flinch());
         StartCoroutine(Blink());
 
-        if(this.amount <= 0)
+        if(this.amount <= 0 && !isDying)
         {
             if (transform.root.tag == "Player")
             {
@@ -103,6 +104,7 @@ public class Health : MonoBehaviour
 
     private IEnumerator KillEntity()
     {
+        isDying = true;
         canAct = false;
 
         if(deathParticles != null)
