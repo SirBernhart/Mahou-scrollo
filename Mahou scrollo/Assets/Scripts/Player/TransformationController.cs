@@ -1,16 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TransformationController : MonoBehaviour
 {
-    [SerializeField] private GameObject normalForm;
-    [SerializeField] private GameObject magicForm;
     [SerializeField] private Health health;
+    [SerializeField] private EntityMovement entityMovement;
     [SerializeField] private GameObject normalFormPiecesParent;
     [SerializeField] private GameObject magicFormPiecesParent;
     private SpriteRenderer[] normalFormPieces;
     private SpriteRenderer[] magicFormPieces;
+    [SerializeField] private Animator animatorNormal;
+    [SerializeField] private Animator animatorMagic;
+    [SerializeField] private Image portrait;
+    [SerializeField] private Sprite minaNormal;
+    [SerializeField] private Sprite minaMagica;
 
     private void Start()
     {
@@ -31,6 +36,8 @@ public class TransformationController : MonoBehaviour
         {
             ChangeSpriteRenderers(magicFormPieces, normalFormPieces);
             health.graphics = magicFormPieces;
+            health.animator = animatorMagic;
+            entityMovement.animator = animatorMagic;
 
             isInNormalForm = false;
         }
@@ -38,6 +45,8 @@ public class TransformationController : MonoBehaviour
         {
             ChangeSpriteRenderers(normalFormPieces, magicFormPieces);
             health.graphics = normalFormPieces;
+            health.animator = animatorNormal;
+            entityMovement.animator = animatorNormal;
 
             isInNormalForm = true;
         }

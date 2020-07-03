@@ -9,6 +9,12 @@ public class MeleeAttack : AttackBase
     [SerializeField] private Animator animator;
     
     public GameObject attackIndicator;
+    public ParticleSystem launchingKick;
+
+    private void Start()
+    {
+        launchingKick.Stop();
+    }
 
     public new void Attack(ActionType attackType)
     {
@@ -34,24 +40,28 @@ public class MeleeAttack : AttackBase
         // Start attack
         isAttacking = true;
         attackCollider.enabled = true;
-        attackIndicator.SetActive(true);
+        if (attackIndicator != null)
+            attackIndicator.SetActive(true);
         switch (currentAttack.name)
         {
             case "Jab":
-                attackIndicator.GetComponent<SpriteRenderer>().color = new Color(255, 185, 0);
+                if(attackIndicator != null)
+                    attackIndicator.GetComponent<SpriteRenderer>().color = new Color(255, 185, 0);
                 if(animator != null)
                     animator.SetTrigger("Punched");
                 break;
             case "Cross":
-                attackIndicator.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
                 if (animator != null)
                     animator.SetTrigger("Punched");
                 break;
             case "Kick":
-                attackIndicator.GetComponent<SpriteRenderer>().color = new Color(0, 255, 0);
+                if (animator != null)
+                    animator.SetTrigger("Kicked");
                 break;
             case "LaunchingKick":
-                attackIndicator.GetComponent<SpriteRenderer>().color = new Color(255, 0, 125);
+                if (animator != null)
+                    animator.SetTrigger("Kicked");
+                launchingKick.Play();
                 break;
         }
 
@@ -60,6 +70,9 @@ public class MeleeAttack : AttackBase
         // End attack
         isAttacking = false;
         attackCollider.enabled = false;
-        attackIndicator.SetActive(false);
+        if (attackIndicator != null)
+            attackIndicator.SetActive(false);
+        if (launchingKick != null)
+            launchingKick.Stop();
     }
 }

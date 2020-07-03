@@ -57,10 +57,6 @@ public class PlayerInput : MonoBehaviour
                 {
                     meleeAttack.Attack(ActionType.heavyMelee);
                 }
-                else
-                {
-                    rangedAttack.Attack(ActionType.heavyRanged);
-                }
             }
         }
 

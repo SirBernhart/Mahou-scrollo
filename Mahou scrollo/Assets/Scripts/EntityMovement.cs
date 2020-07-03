@@ -17,7 +17,7 @@ public class EntityMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D entityRigidbody;
     [SerializeField] private GroundedController groundedController;
     [SerializeField] private AttackBase entityAttack;
-    [SerializeField] private Animator animator;
+    public Animator animator;
 
     // Internal variables
     private Coroutine rememberJumpInputCoroutine;

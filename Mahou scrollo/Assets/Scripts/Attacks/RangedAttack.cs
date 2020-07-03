@@ -6,15 +6,17 @@ public class RangedAttack : AttackBase
 {
     [SerializeField] private GameObject attackProjectile;
     [SerializeField] private float projectileSpeed;
+    [SerializeField] Animator animator;
 
     public new void Attack(ActionType attackType)
     {
         if (canAttack)
         {
-        Instantiate(attackProjectile, transform.position, transform.rotation)
+            Instantiate(attackProjectile, transform.position, transform.rotation)
                 .GetComponentInChildren<ProjectileBehavior>().
                 SetProjectileProperties(GetAttackDirection(), currentDamageValue, projectileSpeed, transform.root.gameObject.tag);
 
+            animator.SetTrigger("Punched");
             base.Attack(attackType);
         }
     }

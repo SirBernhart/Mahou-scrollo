@@ -10,6 +10,7 @@ public class Health : MonoBehaviour
     [SerializeField] private ParticleSystem deathParticles;
     public SpriteRenderer[] graphics;
     [SerializeField] private float blinkTimes;
+    public Animator animator;
 
     [SerializeField] private Image healthBar;
     [SerializeField] private GameObject restart;
@@ -34,6 +35,9 @@ public class Health : MonoBehaviour
         {
             this.amount -= amount;
             UpdateHealthBarGraphics();
+
+            if(animator != null) 
+                animator.SetTrigger("Damaged");
 
             StartCoroutine(Flinch());
             StartCoroutine(Blink());
