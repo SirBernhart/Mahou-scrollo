@@ -16,6 +16,6 @@ MonoBehaviour:
   specialEffect: 0
   specialEffectIntensity: 0
   actionToTrigger: 0
-  cooldown: 0.3
+  cooldown: 0.5
   damage: 2
-  isFinisher: 0
+  isFinisher: 1
