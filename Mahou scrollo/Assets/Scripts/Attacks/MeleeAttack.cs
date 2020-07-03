@@ -6,6 +6,7 @@ public class MeleeAttack : AttackBase
 {
     [SerializeField] private Collider2D attackCollider;
     [SerializeField] private float attackDuration;
+    [SerializeField] private Animator animator;
     
     public GameObject attackIndicator;
 
@@ -38,9 +39,13 @@ public class MeleeAttack : AttackBase
         {
             case "Jab":
                 attackIndicator.GetComponent<SpriteRenderer>().color = new Color(255, 185, 0);
+                if(animator != null)
+                    animator.SetTrigger("Punched");
                 break;
             case "Cross":
                 attackIndicator.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0);
+                if (animator != null)
+                    animator.SetTrigger("Punched");
                 break;
             case "Kick":
                 attackIndicator.GetComponent<SpriteRenderer>().color = new Color(0, 255, 0);

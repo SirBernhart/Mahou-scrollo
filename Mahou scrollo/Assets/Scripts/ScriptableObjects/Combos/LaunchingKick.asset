@@ -17,5 +17,5 @@ MonoBehaviour:
   specialEffectIntensity: 10
   actionToTrigger: 2
   cooldown: 0.5
-  damage: 4
+  damage: 5
   isFinisher: 1

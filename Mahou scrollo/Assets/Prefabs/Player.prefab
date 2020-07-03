@@ -365,6 +365,7 @@ MonoBehaviour:
   health: {fileID: 6818809573187660954}
   normalFormPiecesParent: {fileID: 7773887697178358999}
   magicFormPiecesParent: {fileID: 4713779664126989390}
+  animator: {fileID: 8209345417415755909}
 --- !u!1 &3022888306851606014
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,6 +418,7 @@ MonoBehaviour:
   restart: {fileID: 0}
   score: {fileID: 0}
   flinchTime: 0.7
+  invincibilityTime: 1
 --- !u!1 &3624260571479937827
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,6 +472,7 @@ MonoBehaviour:
   effectsHandler: {fileID: 430814312381864766}
   attackCollider: {fileID: 6237237455432675771}
   attackDuration: 0.2
+  animator: {fileID: 8209345417415755909}
   attackIndicator: {fileID: 7714784219161752839}
 --- !u!114 &6229628222530507361
 MonoBehaviour:
@@ -528,7 +531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8129031245633004742}
   - component: {fileID: 114573387749449759}
-  - component: {fileID: 8647207702030639238}
+  - component: {fileID: 3870124071765494578}
   m_Layer: 0
   m_Name: Grounded controller
   m_TagString: Untagged
@@ -564,8 +567,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stopBeingGroundedDelay: 0.2
   groundTag: Ground
---- !u!58 &8647207702030639238
-CircleCollider2D:
+--- !u!70 &3870124071765494578
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -577,9 +580,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.78}
-  serializedVersion: 2
-  m_Radius: 0.32
+  m_Offset: {x: 0, y: -1}
+  m_Size: {x: 0.75, y: 0.12}
+  m_Direction: 1
 --- !u!1 &7714784219161752839
 GameObject:
   m_ObjectHideFlags: 0

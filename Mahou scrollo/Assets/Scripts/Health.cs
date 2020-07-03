@@ -17,6 +17,8 @@ public class Health : MonoBehaviour
     public Score score;
 
     [SerializeField] private float flinchTime;
+    [SerializeField] private float invincibilityTime;
+    private bool isInvincible = false;
     private bool canAct = true;
     private bool isDying = false;
     public bool GetCanAct() { return canAct; }
@@ -28,21 +30,25 @@ public class Health : MonoBehaviour
 
     public void ReduceHealth(int amount)
     {
-        this.amount -= amount;
-        UpdateHealthBarGraphics();
-
-        StartCoroutine(Flinch());
-        StartCoroutine(Blink());
-
-        if(this.amount <= 0 && !isDying)
+        if (!isInvincible)
         {
-            if (transform.root.tag == "Player")
+            this.amount -= amount;
+            UpdateHealthBarGraphics();
+
+            StartCoroutine(Flinch());
+            StartCoroutine(Blink());
+            StartCoroutine(CountInvincibilityTime());
+
+            if(this.amount <= 0 && !isDying)
             {
-                restart.SetActive(true);
-            }
-            StopAllCoroutines();
-            StartCoroutine(KillEntity());
-        } 
+                if (transform.root.tag == "Player")
+                {
+                    restart.SetActive(true);
+                }
+                StopAllCoroutines();
+                StartCoroutine(KillEntity());
+            } 
+        }
     }
 
     public void IncreaseHealth(int amount)
@@ -100,6 +106,13 @@ public class Health : MonoBehaviour
         canAct = false;
         yield return new WaitForSeconds(flinchTime);
         canAct = true;
+    }
+
+    private IEnumerator CountInvincibilityTime()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(invincibilityTime);
+        isInvincible = false;
     }
 
     private IEnumerator KillEntity()

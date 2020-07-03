@@ -55,6 +55,7 @@ MonoBehaviour:
   restart: {fileID: 0}
   score: {fileID: 0}
   flinchTime: 0.3
+  invincibilityTime: 0
 --- !u!198 &3298157660420254686
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -10268,6 +10269,7 @@ MonoBehaviour:
   effectsHandler: {fileID: 2471883717468398361}
   attackCollider: {fileID: 3488700414378291640}
   attackDuration: 0.2
+  animator: {fileID: 0}
   attackIndicator: {fileID: 568581955762989616}
 --- !u!61 &3488700414378291640
 BoxCollider2D:
