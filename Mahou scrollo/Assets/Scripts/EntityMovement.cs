@@ -83,7 +83,7 @@ public class EntityMovement : MonoBehaviour
         }
         if(animator != null)
         {
-            animator.SetBool("isRunning", entityRigidbody.velocity.x != 0);
+            animator.SetBool("isRunning", entityRigidbody.velocity.x != 0 || direction != 0);
             animator.SetBool("isGrounded", groundedController.GetIsGrounded());
         }
     }
