@@ -17,6 +17,7 @@ public class TransformationController : MonoBehaviour
         normalFormPieces = normalFormPiecesParent.GetComponentsInChildren<SpriteRenderer>();
         magicFormPieces = magicFormPiecesParent.GetComponentsInChildren<SpriteRenderer>();
 
+        ChangeSpriteRenderers(normalFormPieces, magicFormPieces);
         health.graphics = normalFormPieces;
     }
 
@@ -28,19 +29,29 @@ public class TransformationController : MonoBehaviour
     {
         if (isInNormalForm)
         {
+            ChangeSpriteRenderers(magicFormPieces, normalFormPieces);
             health.graphics = magicFormPieces;
-            normalForm.SetActive(false);
-            magicForm.SetActive(true);
 
             isInNormalForm = false;
         }
         else
         {
+            ChangeSpriteRenderers(normalFormPieces, magicFormPieces);
             health.graphics = normalFormPieces;
-            normalForm.SetActive(true);
-            magicForm.SetActive(false);
 
             isInNormalForm = true;
+        }
+    }
+
+    private void ChangeSpriteRenderers(SpriteRenderer[] rendererToEnable, SpriteRenderer[] rendererToDisable)
+    {
+        for(int i = 0 ; i < rendererToEnable.Length ; ++i)
+        {
+            rendererToEnable[i].enabled = true;
+        }
+        for (int i = 0; i < rendererToDisable.Length; ++i)
+        {
+            rendererToDisable[i].enabled = false;
         }
     }
 }
