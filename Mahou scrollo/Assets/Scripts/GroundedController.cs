@@ -12,7 +12,7 @@ public class GroundedController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == groundTag)
+        if(collision.tag == groundTag || collision.tag == "Enemy")
         {
             isGrounded = true;
 
@@ -26,14 +26,14 @@ public class GroundedController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.tag == groundTag)
+        if(collision.tag == groundTag || collision.tag == "Enemy")
         {
             if(delayStopBeingGrounded != null)
             {
                 StopCoroutine(delayStopBeingGrounded);
             }
 
-            delayStopBeingGrounded = StartCoroutine("DelayStopBeingGrounded");
+            delayStopBeingGrounded = StartCoroutine(DelayStopBeingGrounded());
         }
     }
 
